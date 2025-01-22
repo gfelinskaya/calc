@@ -11,31 +11,25 @@ namespace MyProgram
     internal class Program
     {
 
-        static double Add(double parsed1, double parsed2)
+        static double Add (double parsed1, double parsed2)
         {
             double dodavania = parsed1 + parsed2;
             return dodavania;
         }
-        static double Multiply(double parsed1, double parsed2)
+        static double Multiply (double parsed1, double parsed2)
         {
             double mnozhennia = parsed1 * parsed2;
             return mnozhennia;
         }
-        static double Substract(double parsed1, double parsed2)
+        static double Substract (double parsed1, double parsed2)
         {
             double vidnimania = parsed1 - parsed2;
             return vidnimania;
         }
 
-        static double Divide(double parsed1, double parsed2)
+        static void Divide (double parsed1, double parsed2, out double result)
         {
-             if (parsed2 == 0)
-                    {
-                    Console.WriteLine("на нуль ділити не можна");
-                    return -1;
-                    }
-            double dilenia = parsed1/ parsed2;
-            return dilenia;
+            result = parsed1/ parsed2;
         }
         
         static void Main()
@@ -62,16 +56,20 @@ namespace MyProgram
                 switch(operation)
                 {
                 case "+":
-                    result = Add(parsed1, parsed2);   
+                    result = Add (parsed1, parsed2);   
                     break;
                 case "*":
-                    result = Multiply(parsed1, parsed2);
+                    result = Multiply (parsed1, parsed2);
                     break;
                 case "/":
-                    result = Divide(parsed1, parsed2);
+                    if (parsed2 == 0)
+                    {
+                    Console.WriteLine("на нуль ділити не можна");
+                    }
+                    Divide (parsed1, parsed2, out result);
                     break; 
                 case "-":
-                    result = Substract(parsed1, parsed2);
+                    result = Substract (parsed1, parsed2);
                     break;
                 default:
                     Console.WriteLine("Ви ввели не валідний символ");
